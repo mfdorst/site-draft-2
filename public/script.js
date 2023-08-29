@@ -1,36 +1,31 @@
 const ANIMATION_DELAY_MS = 60;
 
-const links = {
-  "link-home": {
-    text: "Home",
-    element: null,
-    animationInterval: null,
+const linkElements = [...document.querySelectorAll("nav a")];
+
+const links = linkElements.map((element) => {
+  const text = element.id.slice(5, 6).toUpperCase() + element.id.slice(6);
+  return {
+    element,
+    text,
     mouseOver: false,
-    currentPage: false,
-  },
-  "link-projects": {
-    text: "Projects",
-    element: null,
     animationInterval: null,
-    mouseOver: false,
-    currentPage: false,
-  },
-  "link-info": {
-    text: "Info",
-    element: null,
-    animationInterval: null,
-    mouseOver: false,
-    currentPage: false,
-  },
-  "link-contact": {
-    text: "Contact",
-    element: null,
-    animationInterval: null,
-    mouseOver: false,
-    currentPage: false,
-  },
-};
-let currentPageLink = null;
+  };
+});
+
+const currentPageLink = links.find((link) =>
+  link.element.classList.contains("current-page")
+);
+
+for (const link of links) {
+  link.element.addEventListener("mouseover", () => {
+    link.mouseOver = true;
+    mouseOverLink(link);
+  });
+  link.element.addEventListener("mouseleave", () => {
+    link.mouseOver = false;
+    mouseLeaveLink(link);
+  });
+}
 
 function animateWriting(link) {
   let numCharsWritten = 0;
@@ -67,8 +62,7 @@ function mouseLeaveLink(link) {
 
 function reanimateCurrentPageLink() {
   // Don't reanimate current page link if another link is hovered
-  for (const linkId in links) {
-    const link = links[linkId];
+  for (const link of links) {
     if (link.mouseOver) {
       return;
     }
@@ -79,32 +73,8 @@ function reanimateCurrentPageLink() {
 }
 
 function clearAllAnimationIntervals() {
-  for (const linkId in links) {
-    const link = links[linkId];
+  for (const link of links) {
     clearInterval(link.animationInterval);
     link.animationInterval = null;
   }
-}
-
-const linkElements = document.querySelectorAll("nav a");
-
-for (const linkElement of linkElements) {
-  const link = links[linkElement.id];
-  link.element = linkElement;
-  if (linkElement.classList.contains("current-page")) {
-    link.currentPage = true;
-    currentPageLink = link;
-  }
-}
-
-for (const linkId in links) {
-  const link = links[linkId];
-  link.element.addEventListener("mouseover", () => {
-    link.mouseOver = true;
-    mouseOverLink(link);
-  });
-  link.element.addEventListener("mouseleave", () => {
-    link.mouseOver = false;
-    mouseLeaveLink(link);
-  });
 }
