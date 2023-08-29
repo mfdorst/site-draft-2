@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+    --frame-margin: max(20px, 4vmin);
+}
+
+.frame {
+    position: fixed;
+    top: var(--frame-margin);
+    left: var(--frame-margin);
+    right: var(--frame-margin);
+    bottom: var(--frame-margin);
+}
