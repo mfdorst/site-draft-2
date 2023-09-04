@@ -1,13 +1,17 @@
 const ANIMATION_DELAY_MS = 50;
 const BLINK_DELAY_MS = 750;
 
-const h1 = document.querySelector("h1");
-const h2 = document.querySelector("h2");
+const toAnimateWriting = [...document.querySelectorAll(".animate-writing")]
+  .map(elem => ({ elem, text: elem.innerText.trimStart()}));
+
+for (const {elem} of toAnimateWriting) {
+  elem.innerHTML = "&nbsp;"
+}
+
 const currentPageLink = document.querySelector(".current-page");
 
 const animations = [
-  () => animateWriting(h1, "Michael Dorst"),
-  () => animateWriting(h2, "Software Developer"),
+  ...toAnimateWriting.map(({elem, text}) => () => animateWriting(elem, text)),
   () =>
     setTimeout(() => setCaretAndBlinkCursor(currentPageLink), BLINK_DELAY_MS),
 ];
@@ -24,8 +28,9 @@ function animateNext() {
 
 function animateWriting(elem, text) {
   let numCharsWritten = 0;
+  elem.innerHTML = "&gt; &#9610;";
   const interval = setInterval(nextFrame, ANIMATION_DELAY_MS);
-  nextFrame(text);
+  nextFrame();
 
   function nextFrame() {
     const partialText = text.slice(0, numCharsWritten++);

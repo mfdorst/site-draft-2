@@ -7,27 +7,30 @@
   <title>Michael Dorst</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet" />
   <link rel="stylesheet" href="output.css" />
 </head>
 
 <body class="bg-black h-full font-mono text-green-600">
   <main class="frame border border-green-800">
-    <div class="mt-12 flex flex-col items-center sm:block sm:m-12">
-      <h1 class="text-3xl font-thin sm:text-5xl lg:text-6xl">
-        Michael Dorst
+    <div class="mt-12 sm:m-12">
+      <h1 class="text-2xl font-thin sm:text-5xl lg:text-6xl">
+        &nbsp; Michael Dorst
       </h1>
-      <h2 class="font-light sm:text-lg lg:text-xl">Software Developer</h2>
+      <h2 class="ml-3 text-sm font-light sm:text-lg sm:ml-9 lg:text-xl lg:ml-12">
+        &nbsp; Software Developer
+      </h2>
     </div>
 
-    <nav class="mt-16 ml-6 font-light flex flex-col sm:text-lg lg:text-xl">
-      <a id="link-home" href="index.html" class="p-1">&nbsp; Home</a>
-      <a id="link-projects" href="projects.html" class="p-1">&nbsp; Projects</a>
-      <a id="link-info" href="info.html" class="p-1">&nbsp; Info</a>
-      <a id="link-contact" href="#" class="current-page p-1">&gt; Contact_</a>
+    <nav class="mt-8 ml-2 font-light flex flex-col sm:ml-20 sm:text-lg lg:ml-24 lg:text-xl">
+      <a id="link-home" href="index.html" class="p-0">&nbsp; About Me</a>
+      <a id="link-projects" href="projects.html" class="p-0">&nbsp; Projects</a>
+      <a id="link-contact" href="contact.html" class="current-page p-0">&nbsp; Contact</a>
     </nav>
 
-    <ul class="ml-12 mt-16 text-lg flex flex-col gap-2">
+    <ul class="ml-7 mt-12 text-lg font-semibold flex flex-col gap-2">
       <li>
         <a href="mailto:info@mdorst.net">info@mdorst.net</a>
       </li>
@@ -35,6 +38,6 @@
   </main>
 </body>
 
-<script src="animate-links.js"></script>
+<script src="animate.js"></script>
 
 </html>
